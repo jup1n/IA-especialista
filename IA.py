@@ -3,18 +3,16 @@ class DnDCharacterCreator:
         print(question)
         return input().strip().lower()
     
-    def define_gender(self):
+    def define_gender(self): # Definição do genero do personagem
         print("Responda das sequintes perguntas com a sua letra de identificação (a/b/c)")
         print("O seu personagem se define com o genero: ")
-        question = "a) Feminino\nb) Masculino\nc) Indefinido"
-        answer = self.ask_question(question)
+        question = "a) Feminino\nb) Masculino"
+        answer = self.ask_question(question) == "a"
         
-        if answer == "a":
+        if answer:
             gender = "Feminino"
-        elif answer == "b":
+        elif not answer:
             gender = "Masculino"
-        elif answer == "c":
-            gender = "Indefinido"
         
         return gender
         
@@ -53,7 +51,7 @@ class DnDCharacterCreator:
 
         return alignment
     
-    def define_calss(self):
+    def define_class(self):
         print("Responda as seguintes questões com 'sim' ou 'não'")
         question_melee = "Seu personagem é voltado para combate corpo a corpo?"
         answer_melee = self.ask_question(question_melee) == "sim"
@@ -104,7 +102,7 @@ class DnDCharacterCreator:
             return "Classe indefinida. Respostas não coincidem com uma classe específica."
 
         
-    def definir_raca(self):
+    def define_race(self):
         print("Responda as seguintes questões com 'sim' ou 'não'")
 
         question_forca = "Seu personagem tem aumento de força?"
@@ -170,13 +168,12 @@ class DnDCharacterCreator:
         gender = self.define_gender()
         alignment = self.define_alignment()
         race = self.define_race()
-        classe = self.define_call()
+        classe = self.define_class()
         
         print(f"Genero: {gender}")
         print(f"Alinhamento: {alignment}")
         print(f"Raça: {race}")
         print(f"Classe: {classe}")
 
-# Uso da classe
 creator = DnDCharacterCreator()
 creator.create_character()
