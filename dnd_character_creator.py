@@ -20,7 +20,3 @@ class DnDCharacterCreator:
         print(f"Alinhamento: {alignment}")
         print(f"Raça: {subrace}")
         print(f"Classe: {classe}")
-
-if __name__ == "__main__":
-    creator = DnDCharacterCreator()
-    creator.create_character()
