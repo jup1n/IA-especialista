@@ -52,7 +52,6 @@ class DnDCharacterCreator:
         return alignment
     
     def define_class(self):
-        print("Responda as seguintes questões com 'sim' ou 'não'")
         question_melee = "Seu personagem é voltado para combate corpo a corpo?"
         answer_melee = self.ask_question(question_melee) == "sim"
         
@@ -99,7 +98,7 @@ class DnDCharacterCreator:
         elif not answer_melee and not answer_ranged and answer_caster and answer_sneaking and not answer_detective and answer_speaching and not answer_tank:
             return "Bardo"
         else:
-            return "Classe indefinida. Respostas não coincidem com uma classe específica."
+            return "Bardo"
 
         
     def define_race(self):
@@ -144,24 +143,47 @@ class DnDCharacterCreator:
         question_visao_escuro = "Seu personagem possui visão no escuro?"
         answer_visao_escuro = self.ask_question(question_visao_escuro) == "sim"
 
-        if answer_forca and answer_destreza and answer_constituicao and not answer_inteligencia and not answer_sabedoria and answer_carisma and not answer_resistencia and answer_velocidade and not answer_armas and answer_idiomas and not answer_habilidades and not answer_tamanho_pequeno and not answer_visao_escuro:
+        if answer_resistencia and answer_velocidade and not answer_armas and answer_idiomas and not answer_habilidades and not answer_tamanho_pequeno and not answer_visao_escuro:
             return "Humano"
-        elif not answer_forca and not answer_destreza and answer_constituicao and not answer_inteligencia and answer_sabedoria and not answer_carisma and answer_resistencia and answer_velocidade and answer_armas and answer_idiomas and not answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
+        elif answer_resistencia and answer_velocidade and answer_armas and answer_idiomas and not answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
             return "Anão"
-        elif not answer_forca and answer_destreza and not answer_constituicao and answer_inteligencia and answer_sabedoria and not answer_carisma and not answer_resistencia and answer_velocidade and answer_armas and not answer_idiomas and not answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
+        elif not answer_resistencia and answer_velocidade and answer_armas and not answer_idiomas and not answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
             return "Elfo"
-        elif not answer_forca and answer_destreza and not answer_constituicao and not answer_inteligencia and not answer_sabedoria and answer_carisma and not answer_resistencia and not answer_velocidade and answer_armas and not answer_idiomas and not answer_habilidades and answer_tamanho_pequeno and not answer_visao_escuro:
+        elif not answer_resistencia and not answer_velocidade and answer_armas and not answer_idiomas and not answer_habilidades and answer_tamanho_pequeno and not answer_visao_escuro:
             return "Halfling"
-        elif answer_forca and not answer_destreza and answer_constituicao and not answer_inteligencia and not answer_sabedoria and not answer_carisma and not answer_resistencia and answer_velocidade and answer_armas and not answer_idiomas and not answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
+        elif not answer_resistencia and answer_velocidade and answer_armas and not answer_idiomas and not answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
             return "Meio-Orc"
-        elif not answer_forca and answer_destreza and not answer_constituicao and answer_inteligencia and not answer_sabedoria and not answer_carisma and not answer_resistencia and not answer_velocidade and not answer_armas and answer_idiomas and answer_habilidades and answer_tamanho_pequeno and answer_visao_escuro:
+        elif not answer_resistencia and not answer_velocidade and not answer_armas and answer_idiomas and answer_habilidades and answer_tamanho_pequeno and answer_visao_escuro:
             return "Gnomo"
-        elif not answer_forca and answer_destreza and not answer_constituicao and not answer_inteligencia and answer_sabedoria and answer_carisma and not answer_resistencia and answer_velocidade and answer_armas and not answer_idiomas and answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
+        elif not answer_resistencia and answer_velocidade and answer_armas and not answer_idiomas and answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
             return "Meio-Elfo"
-        elif answer_forca and not answer_destreza and answer_constituicao and not answer_inteligencia and not answer_sabedoria and answer_carisma and not answer_resistencia and answer_velocidade and answer_armas and not answer_idiomas and answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
+        elif not answer_resistencia and answer_velocidade and answer_armas and not answer_idiomas and answer_habilidades and not answer_tamanho_pequeno and answer_visao_escuro:
             return "Draconato"
         else:
-            return "Raça indefinida. Respostas não coincidem com uma raça específica."
+            question_habilidade = "Seu personagem se destaca em algum atributo?"
+            answer_habilidade = self.ask_question(question_habilidade)
+
+            if not answer_habilidade.lower() in ["sim", "yes"]:
+                return "Humano"
+            else:
+                question_atributo = "Qual atributo?"
+                answer_atributo = self.ask_question(question_atributo).lower()
+
+                if answer_atributo == "forca":
+                    return "Meio-Orc"
+                elif answer_atributo == "destreza":
+                    return "Meio-Elfo"
+                elif answer_atributo == "constituicao":
+                    return "Anão"
+                elif answer_atributo == "inteligencia":
+                    return "Gnomo"
+                elif answer_atributo == "sabedoria":
+                    return "Elfo"
+                elif answer_atributo == "carisma":
+                    return "Draconato"
+                else:
+                    return "Atributo não identificado. Por favor, escolha entre: força, destreza, constituição, inteligência, sabedoria ou carisma."
+
 
         
     def create_character(self):
