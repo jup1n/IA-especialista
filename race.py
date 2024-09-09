@@ -39,25 +39,25 @@ def define_race(self):
             return "Draconato"
         else:
             question_habilidade = "Seu personagem se destaca em algum atributo?"
-            answer_habilidade = self.ask_question(question_habilidade)
+            answer_habilidade = self.ask_question(question_habilidade).lower() == "sim"
 
-            if not answer_habilidade.lower():
+            if not answer_habilidade:
                 return "Humano"
             else:
-                question_atributo = "Escolha um atributo dentre os seguintes: forca, destreza, constituicao, inteligencia, sabedoria ou carisma"
-                answer_atributo = self.ask_question(question_atributo).lower()
+                question_atributo = "Escolha um atributo dentre os seguintes (digite o número correspondente ao atributo):\n1. forca\n2. destreza\n3. constituicao\n4. inteligencia\n5. sabedoria\n6. carisma"
+                answer_atributo = self.ask_question(question_atributo)
 
-                if answer_atributo == "forca":
+                if answer_atributo == "1":
                     return "Meio-Orc"
-                elif answer_atributo == "destreza":
+                elif answer_atributo == "2":
                     return "Meio-Elfo"
-                elif answer_atributo == "constituicao":
+                elif answer_atributo == "3":
                     return "Anão"
-                elif answer_atributo == "inteligencia":
+                elif answer_atributo == "4":
                     return "Gnomo"
-                elif answer_atributo == "sabedoria":
+                elif answer_atributo == "5":
                     return "Elfo"
-                elif answer_atributo == "carisma":
+                elif answer_atributo == "6":
                     return "Draconato"
                 else:
                     return "Atributo não identificado. Por favor, escolha somente um atributo."
